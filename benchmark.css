@@ -62,7 +62,8 @@ button {
     height: 70px;
     margin-right: 1.4em;
     font-weight: bold;
-    box-shadow: 2px 2px 3px
+    box-shadow: 2px 2px 3px;
+    
 }
 h1 { font-size: 4.6em;
     margin-bottom: 1em;
@@ -77,16 +78,24 @@ h1 { font-size: 4.6em;
    margin-top: 0;
    }
 
+   #footstr {
+       text-align: center;
+       margin-top: 10vh;
+       font-weight: 500;
+   }
+       
+   #violet { color: deeppink;
+    font-weight: 500;}
+
+    button:hover {
+        background-color: rgb(224, 8, 123);
+        color: white;
+        
+    }
     
     
 
-#footstr {
-    text-align: center;
-    margin-top: 10vh;
-    font-weight: 460;
     
-    
-}
 
-#violet { color: deeppink;
- font-weight: 300;}
+
+ 
