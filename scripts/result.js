@@ -48,6 +48,6 @@ const config = {
   },
 }
 
-var myChart = new Chart(document.getElementById('myChart'), config)
+const myChart = new Chart(document.getElementById('myChart'), config)
 
 // FINE GRAFICO A CIAMBELLA
