@@ -134,9 +134,9 @@ const questions = [
 function selectAnswer(Correct){
     if(Correct){
         score++
-        results.push("Giusto!")
+        results.push(1)("Giusto!")
         alert("Giusto!")
-       } else{ results.push("Sbagliato!") 
+       } else{ results.push(0)("Sbagliato!") 
         alert("Sbagliato!")}  /// abilitazione del tasto Next 
         document.getElementById('nextButton').disabled=false
 }
