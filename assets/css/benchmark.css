@@ -95,3 +95,85 @@ button:hover {
   background-color: rgb(224, 8, 123);
   color: white;
 }
+
+
+
+/* timer */
+
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.center{display: flex;
+  justify-content: center;
+align-items: center;
+text-align: center;
+right: 30px;
+top: 35px;
+}
+
+
+.main-container{width: 150px;
+height:150px;
+/* border: 1px black solid; */
+position: absolute;
+z-index: 1;
+border-radius: 50%;
+overflow: hidden;
+background-color: #9A6A9E;
+}
+
+.semicircle{width: 50%;
+height:100%;
+position: absolute;
+top: 0;
+left:0;
+transform-origin: right center;
+/* animation: rotate 1s linear ;  */
+}
+
+.semicircle:nth-child(1){ /*indice 0*/
+  background-color:  #00fff0;    
+  z-index: 2;
+}
+
+.semicircle:nth-child(2){  /*indice 1*/
+  background-color:   #00fff0; 
+}
+
+.semicircle:nth-child(3){
+  background-color:#9A6A9E;
+  z-index: 4;
+  /* display: none; */
+  
+}
+
+.outer-circle{
+  height: 120px;
+  width: 120px;
+  background:linear-gradient(-270deg, rgba(2,0,36,1) 0%, rgba(108,35,120,1) 100%, rgba(0,212,255,1) 100%);
+
+  border-radius: 50%;
+  z-index: 5;
+  /* display: none; */
+}
+
+#timer {padding: 1em;
+font-family: Arial, Helvetica, sans-serif;
+text-align: center;
+}
+#timer h1 {font-size: 30px;
+margin: 0;
+font-weight: 100;
+}
+#timer p{font-size: 10px;
+  margin: 0;;
+padding: 0.6em;
+font-weight: 100;}
