@@ -20,11 +20,12 @@
     <main>
       <h1 class="question">How can I create a</h1>
       <h1 class="question2">checkbox in HTML?</h1>
+      <h1 id="question" class="question"></h1>
       <div id="buttons">
-        <button>input A</button>
-        <button> input B</button>
-        <button>input C</button>
-        <button>input D</button>
+        <button id="answer1" onclick="selectAnswer(0)">input A</button>
+        <button id="answer2" onclick="selectAnswer(1)"> input B</button>
+        <button id="answer3" onclick="selectAnswer(2)">input C</button>
+        <button id="answer4" onclick="selectAnswer(3)">input D</button>
       </div>
       <!---IN SPAN1 CI VA LA FUNZIONE JS PER FARLO CAMBIARE DA 1 FINO A 10 -->
     </main>
@@ -32,6 +33,7 @@
     <p id="footstr">
       QUESTION <span id="span1"> </span> <span id="violet"> /10</span>
     </p>
+    <button id="nextButton" disabled>Next</button>
   </footer>
   </body>
 </html>

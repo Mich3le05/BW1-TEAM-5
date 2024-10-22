@@ -63,8 +63,20 @@ button {
     margin-right: 1.4em;
     font-weight: bold;
     box-shadow: 2px 2px 3px;
-    
 }
+
+#nextButton {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2000px;
+    text-align: center;
+    display: flex;
+   
+}
+    
 h1 { font-size: 4.6em;
     margin-bottom: 1em;
     
