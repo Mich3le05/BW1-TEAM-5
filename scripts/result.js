@@ -1,3 +1,5 @@
+// GRAFICO A CIAMBELLA
+
 const calcola = function () {
   let somma = 5 + 10
   return somma
@@ -47,3 +49,5 @@ const config = {
 }
 
 var myChart = new Chart(document.getElementById('myChart'), config)
+
+// FINE GRAFICO A CIAMBELLA
