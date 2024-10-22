@@ -100,7 +100,7 @@ const questions = [
   
   let currentQuestionIndex = 0;
   let score=0;
-  
+  let results = []
   window.onload=showQuestion
 
   /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE 
@@ -133,8 +133,10 @@ const questions = [
 function selectAnswer(Correct){
     if(Correct){
         score++
+        results.push("Giusto!")
         alert("Giusto!")
-       } else{ alert("Sbagliato!")}  /// abilitazione del tasto Next 
+       } else{ results.push("Sbagliato!") 
+        alert("Sbagliato!")}  /// abilitazione del tasto Next 
         document.getElementById('nextButton').disabled=false
 }
 
