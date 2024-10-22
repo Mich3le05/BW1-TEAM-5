@@ -101,6 +101,7 @@ const questions = [
   let currentQuestionIndex = 0;
   let score=0;
   let results = []
+  let percentage = 0 
   window.onload=showQuestion
 
   /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE 
@@ -157,7 +158,7 @@ function nextQuestion(){
 
  /// mostrare il punteggio finale 
  function showScore() {
-    const percentuale = (score/questions.length)*100
+    percentage = (score/questions.length)*100
     const mainE = document.querySelector('main')
     mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>` 
  }
