@@ -5,11 +5,11 @@ const ctx = document.getElementById('myDonutChart').getContext('2d')
 const myDonutChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ['correct', 'incorrect'],
+    labels: ['Vero', 'Falso'],
     datasets: [
       {
         label: 'Risultati',
-        data: [correctAnswers, incorrectAnswers],
+        data: [20, 10],
         backgroundColor: ['#D20094', '#00FFFF'],
         borderWidth: 0,
       },
