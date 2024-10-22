@@ -157,6 +157,7 @@ function nextQuestion(){
 
  /// mostrare il punteggio finale 
  function showScore() {
+    const percentuale = (score/questions.length)*100
     const mainE = document.querySelector('main')
     mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>` 
  }
