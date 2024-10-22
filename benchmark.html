@@ -4,11 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="benchmark.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>
+      <img id="logo" src="epicode_logo.png" alt="logo" />
+    </header>
+    <main>
+      <h1></h1>
+      <h1></h1>
+      <h1 id="question" class="question"></h1>
+      <div id="buttons">
+        <button id="answer1" onclick="selectAnswer(0)">input A</button>
+        <button id="answer2" onclick="selectAnswer(1)"> input B</button>
+        <button id="answer3" onclick="selectAnswer(2)">input C</button>
+        <button id="answer4" onclick="selectAnswer(3)">input D</button>
+      </div>
+      <!---IN SPAN1 CI VA LA FUNZIONE JS PER FARLO CAMBIARE DA 1 FINO A 10 -->
+    </main>
+    <footer>
+    <p id="footstr">
+      QUESTION <span id="span1"> </span> <span id="violet"> /10</span>
+    </p>
+    <button id="nextButton">Next</button>
+  </footer>
+  <script src="benchmark.js"></script>
   </body>
 </html>
