@@ -51,7 +51,7 @@ section{
 svg{
     color:#00FFFF;
     font-size: 40px;
-   
+   cursor: pointer;
 }
 
 /*FINE*/
@@ -85,8 +85,9 @@ input{
     width: 70%; 
     font-size: 18px;
     font-family: "Outfit", sans-serif;
+    color: white;
 }
-.buttonForm{
+.ButtonForm{
     text-align: center;
     margin-top: 3em;
     font-family: "Outfit", sans-serif;
@@ -99,4 +100,20 @@ input{
     font-size: 20px;
     box-shadow: 5px 5px 30px 5px #00FFFF;
     border-color: #00FFFF;
+    cursor: pointer;
+}
+
+
+
+/*SHAKE*/
+.shake {
+    animation: shake-animation 0.5s;
+}
+
+@keyframes shake-animation {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
 }

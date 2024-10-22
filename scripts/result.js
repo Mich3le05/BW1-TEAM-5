@@ -1,53 +1,40 @@
-// GRAFICO A CIAMBELLA
+const ctx = document.getElementById('myDonutChart').getContext('2d');
 
-const calcola = function () {
-  let somma = 5 + 10
-  return somma
-}
-
-const data = {
-  datasets: [
-    {
-      label: 'My First Dataset',
-      data: [calcola(), 100],
-      backgroundColor: ['#D20094', '#00FFFF'],
-      borderWidth: 0,
+const myDonutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Vero', 'Falso'],
+        datasets: [{
+            label: 'Risultati',
+            data: [20, 10],
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(255, 99, 132, 0.6)',
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1
+        }]
     },
-  ],
+    options: {
+        responsive: true,
+        cutout: '90%',
+        plugins: {
+            legend: {
+                display: false 
+            }
+        }
+    }
+});
+
+const calcolatesto = function {
+
+  if(){}
+  else{}
 }
 
-const config = {
-  type: 'doughnut',
-  data: data,
-  options: {
-    cutout: '70%',
-    plugins: {
-      beforeDraw: function (chart) {
-        const ctx = chart.ctx
-        const chartArea = chart.chartArea
-
-        // Disegna il cerchio esterno con l'ombra
-        ctx.save()
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.2)' // Regola l'opacità
-        ctx.shadowBlur = 10 // Regola l'intensità del blur
-        ctx.shadowOffsetX = 10
-        ctx.shadowOffsetY = 10
-        ctx.beginPath()
-        ctx.arc(
-          chartArea.left + chartArea.width / 2,
-          chartArea.top + chartArea.height / 2,
-          chartArea.width / 2,
-          0,
-          2 * Math.PI
-        )
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)' // Regola il colore dell'ombra
-        ctx.fill()
-        ctx.restore()
-      },
-    },
-  },
-}
-
-var myChart = new Chart(document.getElementById('myChart'), config)
-
-// FINE GRAFICO A CIAMBELLA
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("DivChangeText").innerHTML = calcolatesto();
+});
