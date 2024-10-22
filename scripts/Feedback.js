@@ -3,7 +3,6 @@
 ricerche varie tramite stackoverflow, da cui ho rubato codice, e altri siti, dove ho trovato il fill per gli oggetti svg
 */
 
-
 /*PARTE STELLINE */
 document.querySelectorAll('.star').forEach((star, index, starsArray) => {
     star.addEventListener('click', () => {
@@ -51,7 +50,7 @@ const bottonecliccato = function () {
 };
 
 const inputFeedback = document.getElementById("InputFeedback");
-const buttonForm = document.getElementById("ButtonFormID");
+const buttonForm = document.getElementById("buttonForm");
 
 // Funzione per abilitare/disabilitare il pulsante
 const checkInput = function () {
