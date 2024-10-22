@@ -1,0 +1,102 @@
+body {
+    background-image: url("./../Images/bg.jpg");
+    background-size: cover; /* Opzionale: per far sì che l'immagine riempia lo schermo */
+    background-position: center; /* Opzionale: per centrare l'immagine */
+    background-repeat: no-repeat; /* Opzionale: per evitare che l'immagine si ripeta */
+}
+#imgLogo{
+    width: 20vh;
+    padding-top: 3em;
+    padding-left: 10em;
+}
+
+/*INIZIO SEZIONE MAIN*/
+
+.Main{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 6em;
+}
+
+/*SEZIONE TITOLO*/
+.Titolo{
+    color: white;
+    text-align: center;
+    padding-top: 1em;
+    font-size: 60px;
+    font-family: "Outfit", sans-serif;
+    font-weight: bold;
+}
+
+.Sottotitolo{
+    opacity: 0.8;  /* 1 è completamente opaco, 0 è completamente trasparente */
+    color: white;
+    text-align: center;
+    padding-top: 1.5em;
+    font-family: "Outfit", sans-serif;
+    font-size: 28px;
+    line-height: 1.5; /* Imposta l'altezza della linea al 150% dell'altezza del testo */
+}
+/*FINE SEZIONE TITOLO */
+
+/*STELLINE*/
+
+section{
+    text-align: center;
+    padding-top: 1.5em;
+    letter-spacing: 15px;
+}
+
+svg{
+    color:#00FFFF;
+    font-size: 40px;
+   
+}
+
+/*FINE*/
+
+/*ULTIMA SEZIONE*/
+
+h3{
+    text-align: center;
+    color: white;
+    padding-top: 3em;
+    font-family: "Outfit", sans-serif;
+    font-size: 29px;
+    opacity: 0.7;
+}
+
+form{
+    text-align: center;
+    padding-top: 3em;
+}
+
+input{
+    background: transparent;
+    border-bottom-color: purple;
+    border-bottom-width: 3px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    text-align: left;
+    padding-left: 2.2em;
+    padding-bottom: 0.5em;
+    width: 70%; 
+    font-size: 18px;
+    font-family: "Outfit", sans-serif;
+}
+.buttonForm{
+    text-align: center;
+    margin-top: 3em;
+    font-family: "Outfit", sans-serif;
+    padding-left: 2.8em;
+    padding-right: 2.8em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    background-color: #00FFFF;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 5px 5px 30px 5px #00FFFF;
+    border-color: #00FFFF;
+}
