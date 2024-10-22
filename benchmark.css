@@ -71,7 +71,8 @@ button {
     height: 90px;
     align-items: center;
     justify-content: center;
-    margin-left: 2000px;
+    margin-left: 1400px;
+    margin-top: 50px;
     text-align: center;
     display: flex;
    
@@ -79,16 +80,10 @@ button {
     
 h1 { font-size: 4.6em;
     margin-bottom: 1em;
+    font-weight: 700;
     
 }
 
-   .question {
-    font-weight: 500;
-    margin-bottom: 0.2em;
-   } 
-   .question2 { font-weight: 800;
-   margin-top: 0;
-   }
 
    #footstr {
        text-align: center;

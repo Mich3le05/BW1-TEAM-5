@@ -97,20 +97,65 @@ const questions = [
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
   ];
-
+  
   let currentQuestionIndex = 0;
   let score=0;
-/// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE 
-  function showQuestion(){
-    
-    const questionElement = document.querySelector('question')
-    
-    const buttons = document.querySelectorAll('#buttons button')
+  
+  window.onload=showQuestion
 
+  /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE 
+  function showQuestion(){
+      const counter = document.getElementById('span1')
+      counter.textContent=currentQuestionIndex+1 /// contatore 
+    
+    const questionElement = document.querySelector('#question')
+    const buttons = document.querySelectorAll('#buttons button')
     const currentQuestion = questions[currentQuestionIndex]
     questionElement.textContent=currentQuestion.question 
+
+
+    /// Mescolare le risposte 
+    const answers = [currentQuestion.correct_answer,...currentQuestion.incorrect_answers]
+    answers.sort(()=> Math.random() - 0.5)
+
+    /// testi dei bottoni 
+    buttons.forEach((button,index)=>{
+        button.textContent = answers[index]
+        button.onclick = () => selectAnswer(answers[index]===currentQuestion.correct_answer)
+    })
+    /// reset del pulsante Next 
+    document.getElementById('nextButton').disabled= true 
+}
+
+
+
+/// f. per scegliere la risposta
+function selectAnswer(Correct){
+    if(Correct){
+        score++
+        alert("Giusto!")
+       } else{ alert("Sbagliato!")}  /// abilitazione del tasto Next 
+        document.getElementById('nextButton').disabled=false
+}
+
+
+/// f. per passare alla domanda successiva 
+function nextQuestion(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex<questions.length){
+        showQuestion()
+    }
+    else{showScore()
+
+    }
+}
+ /// pulsante NEXT 
+ document.getElementById('nextButton').addEventListener('click', nextQuestion)
+
+ /// mostrare il punteggio finale 
+ function showScore() {
+    const mainE = document.querySelector('main')
+    mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>` 
+ }
     
 
-
-
-}
