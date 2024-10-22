@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style-results.css" />
   </head>
   <body>
@@ -14,13 +27,16 @@
       <p>The summary of your answers:</p>
     </header>
     <main>
-      <section>
+      <section id="primo" class="textPosition">
         <div>Correct</div>
         <div>correctPercentage</div>
         <div>correctNumber</div>
       </section>
-      <section></section>
-      <section>
+      <section id="grafico">
+        <canvas id="myChart"></canvas>
+      </section>
+
+      <section id="secondo" class="textPosition">
         <div>Wrong</div>
         <div>wrongPercentage</div>
         <div>wrongNumber</div>
@@ -29,5 +45,8 @@
     <footer>
       <button>RATE US</button>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="./scripts/result.js"></script>
   </body>
 </html>
