@@ -87,22 +87,11 @@ main {
   height: auto;
 }
 
-#grafico {
-  height: 350px;
-  width: 350px;
-}
-
 .textPosition {
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: 1.5em;
-}
-
-#myChart {
-  width: 100%;
-  height: auto;
-
 }
 
 .chart-container {
@@ -119,4 +108,9 @@ main {
   font-size: 24px;
   font-weight: bold;
   color: white;
+}
+
+#myDonutChart {
+  width: 100%;
+  height: auto;
 }
