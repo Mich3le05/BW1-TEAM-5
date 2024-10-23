@@ -189,6 +189,10 @@ const questions = [
   
 
 
+//INIZIO CODICE
+
+let timerLoop;
+
 
 
 //importiamo gli elementi da html
@@ -241,10 +245,123 @@ const countDown = () => {
   }
 
   // testo
-  timerDisplay.innerHTML = `<p>SECONDS</p><h1>${
-    secondsRemaining % 60 < 10 ? '0' : ''
-  }${secondsRemaining % 60}</h1><p>REMAINING</p>`
+  timerDisplay.innerHTML = 
+`<p>SECONDS</p><h1>${secondsRemaining < 10 ? "0" : ""}${secondsRemaining}</h1><p>REMAINING</p>`;
+};
+
+const updateSemicircles = (angle) => {
+  if (angle > 180) {
+    semicircles[2].style.display = "none";
+    semicircles[0].style.transform = "rotate(180deg)";
+    semicircles[1].style.transform = `rotate(${angle}deg)`;
+  } else {
+    semicircles[1].style.display = "none";
+    semicircles[2].style.display = "block";
+    semicircles[0].style.transform = `rotate(${angle}deg)`;
+  }
+};
+
+
+//FINE SEZIONE TIMER
+
+/// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE
+function showQuestion() {
+  const counter = document.getElementById("span1");
+  counter.textContent = currentQuestionIndex + 1; // contatore
+
+  const questionElement = document.querySelector("#question");
+  const buttons = document.querySelectorAll("#buttons button");
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+
+  // Mescolare le risposte
+  const answers = [
+    currentQuestion.correct_answer,
+    ...currentQuestion.incorrect_answers,
+  ];
+  answers.sort(() => Math.random() - 0.5);
+
+  buttons.forEach((button, index) => {
+    button.textContent = answers[index];
+    if (button.textContent === ""){
+      console.log("ciao")
+      button.style.display = "none";
+    } 
+    button.disabled = false; // Riabilitare il bottone per la nuova domanda e rimuovere i colori
+    button.classList.remove("selected", "green", "red");
+
+    // Controllare se l'utente ha già risposto alla domanda
+    if (results.length > currentQuestionIndex) {
+      if (results[currentQuestionIndex] === 1) {
+        //button.classList.add("green"); // Risposta corretta
+      } else if (results[currentQuestionIndex] === 0) {
+        //button.classList.add("red"); // Risposta sbagliata
+      }
+      button.disabled = false; // Disabilitare il bottone se la domanda è già stata risposta
+    } else {
+      button.onclick = () =>
+        selectAnswer(button, answers[index] === currentQuestion.correct_answer);
+    }
+  });
+
+  // reset del pulsante Next
+  document.getElementById("nextButton").disabled = true;
+
+  initializeTimer();
+  countDown();
+  timerLoop = setInterval(countDown, 1000);
 }
 
-countDown()
-const timerLoop = setInterval(countDown, 1000)
+/// f. per scegliere la risposta
+function selectAnswer(button, Correct) {
+  const buttons = document.querySelectorAll("#buttons button");
+
+  // Disabilitare tutti i bottoni
+  buttons.forEach((btn) => (btn.disabled = true));
+
+  // Aggiungere la classe selected alla risposta scelta
+  button.classList.add("selected");
+
+  if (Correct) {
+    button.classList.add("green"); // Risposta corretta
+    score++;
+    results.push(1); // Aggiorna il punteggio
+  } else {
+    button.classList.add("red"); // Risposta sbagliata
+    results.push(0); // Aggiorna il punteggio
+  }
+
+  // Abilita il pulsante Next
+  //SE IL PULSANTE è ABILITATO, QUINDI L'USER HA FATTO UNA SCELTA, IL BOTTONE PUO ESSERE CLICCATO, E DIAMO UN POINTER
+  //COSI CHE L'USER POSSA CAPIRLO
+    document.getElementById("nextButton").disabled = false;
+    if (document.getElementById("nextButton").disabled === false) {
+      document.getElementById("nextButton").style.cursor = "pointer";
+    }
+}
+
+/// f. per passare alla domanda successiva
+function nextQuestion() {
+  currentQuestionIndex++;
+  clearInterval(timerLoop); // Clear the timer when moving to the next question
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    showScore();
+  }
+}
+
+/// pulsante NEXT
+document.getElementById("nextButton").addEventListener("click", nextQuestion);
+
+/// mostrare il punteggio finale
+function showScore() {
+  percentage = (score / questions.length) * 100;
+  const mainE = document.querySelector("main");
+  mainE.innerHTML = `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>
+      <p>Percenuale risposte corrette: ${percentage.toFixed(2)}%</p>`;
+
+  // LOCAL STORAGE PER PASSAGGIO A PROSSIMA PAGINA
+  localStorage.setItem("quizResults", JSON.stringify(results));
+  window.location.href = "result.html";
+}
