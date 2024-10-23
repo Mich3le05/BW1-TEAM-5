@@ -67,11 +67,12 @@ button {
   height: 90px;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
   text-align: center;
   display: flex;
-  margin-bottom: 5em;
-  margin-left: 87em;
+  margin-left: 70em;
+  margin-top: -8em;
+  
+  
 }
 
 h1 {
