@@ -71,7 +71,7 @@ button {
   text-align: center;
   display: flex;
   margin-bottom: 5em;
-  margin-left: 80em;
+  margin-left: 87em;
 }
 
 h1 {
@@ -96,6 +96,15 @@ button:hover {
   color: white;
 }
 
+button.green {
+  background-color: #4CAF50;  /* Colore verde per la risposta corretta */
+  color: white;
+}
+
+button.red {
+  background-color: #f44336;  /* Colore rosso per la risposta sbagliata */
+  color: white;
+}
 
 
 /* timer */

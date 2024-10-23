@@ -25,3 +25,16 @@ const myDonutChart = new Chart(ctx, {
     },
   },
 })
+
+// FINE GRAFICO
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('DivChangeText').innerHTML = 'ciao'
+})
+
+const recuperatesto = function () {
+  let retrievedArray = JSON.parse(localStorage.getItem('sharedArray'))
+  console.log(retrievedArray)
+}
+
+recuperatesto()
