@@ -123,7 +123,9 @@ const questions = [
     /// testi dei bottoni 
     buttons.forEach((button,index)=>{
         button.textContent = answers[index]
-        button.onclick = () => selectAnswer(answers[index]===currentQuestion.correct_answer)
+        button.disabled=false
+        button.classList.remove('selected')
+        button.onclick = () => selectAnswer(button,answers[index]===currentQuestion.correct_answer)
     })
     /// reset del pulsante Next 
     document.getElementById('nextButton').disabled= true 
@@ -132,14 +134,20 @@ const questions = [
 
 
 /// f. per scegliere la risposta
-function selectAnswer(Correct){
+function selectAnswer(button ,Correct){
+  const buttons =document.querySelectorAll('#buttons button')
+  /// disabilitare i bottoni
+  buttons.forEach(btn=> btn.disabled=true)
+  /// aggiungere la classe selected alla risposta scelta 
+  button.classList.add('selected')
     if(Correct){
+      button.classList.add('green')
         score++
-        results.push(1)("Giusto!")
-        alert("Giusto!")
-       } else{ results.push(0)("Sbagliato!") 
-        alert("Sbagliato!")}  /// abilitazione del tasto Next 
-        document.getElementById('nextButton').disabled=false
+        results.push(1)
+       } else{
+         button.classList.add('red');
+        results.push(0) } // bottoni colorati 
+        document.getElementById('nextButton').disabled=false /// abilitazione del tasto Next 
 }
 
 
@@ -160,7 +168,8 @@ function nextQuestion(){
  function showScore() {
     percentage = (score/questions.length)*100
     const mainE = document.querySelector('main')
-    mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>` 
+    mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>
+    <p>Percenuale risposte corrette: ${percentage.toFixed(2)}%</p>`
  }
     
 
