@@ -15,7 +15,7 @@ Le pagine create sono:
 
 Progetto sviluppato da:
 -
--
+- Michele Mandanici
 - Serena Ferraro
 - Matteo Di Lorenzo
 -
