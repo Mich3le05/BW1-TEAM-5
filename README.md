@@ -16,8 +16,8 @@ Le pagine create sono:
 Progetto sviluppato da:
 -
 -
--
--Matteo Di Lorenzo
+- Serena Ferraro
+- Matteo Di Lorenzo
 -
 
 
