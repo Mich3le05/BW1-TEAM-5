@@ -103,6 +103,8 @@ let futureTime;
 let startTime;
 let timerLoop;
 
+//INIZIO CODICE
+
 window.onload = showQuestion;
 
 const initializeTimer = () => {
@@ -144,6 +146,10 @@ const countDown = () => {
   // Ferma il timer quando arriva a 0
   if (secondsRemaining <= 0) {
     clearInterval(timerLoop);
+    /// se l'utente non risponde in tempo il results finale avrà un "sbagliato" cioè 0 
+    if(!results[currentQuestionIndex]){
+      results.push(0)
+    }
     timerDisplay.innerHTML = `<p>Time's up</p>`;
     semicircles.forEach((s) => (s.style.transform = "rotate(180deg)"));
     nextQuestion();
@@ -173,6 +179,7 @@ const updateSemicircles = (angle) => {
 
 /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE
 function showQuestion() {
+  
   const counter = document.getElementById("span1");
   counter.textContent = currentQuestionIndex + 1; // contatore
 
@@ -190,6 +197,11 @@ function showQuestion() {
 
   buttons.forEach((button, index) => {
     button.textContent = answers[index];
+    button.style.display = "block";
+    if (button.textContent === ""){
+      console.log("ciao")
+      button.style.display = "none";
+    } 
     button.disabled = false; // Riabilitare il bottone per la nuova domanda e rimuovere i colori
     button.classList.remove("selected", "green", "red");
 
@@ -235,7 +247,13 @@ function selectAnswer(button, Correct) {
   }
 
   // Abilita il pulsante Next
-  document.getElementById("nextButton").disabled = false;
+  //SE IL PULSANTE è ABILITATO, QUINDI L'USER HA FATTO UNA SCELTA, IL BOTTONE PUO ESSERE CLICCATO, E DIAMO UN POINTER
+  //COSI CHE L'USER POSSA CAPIRLO
+    document.getElementById("nextButton").disabled = false;
+    if (document.getElementById("nextButton").disabled === false) {
+
+      document.getElementById("nextButton").style.cursor = "pointer";
+    }
 }
 
 /// f. per passare alla domanda successiva
@@ -243,7 +261,7 @@ function nextQuestion() {
   currentQuestionIndex++;
   clearInterval(timerLoop); // Clear the timer when moving to the next question
   if (currentQuestionIndex < questions.length) {
-    showQuestion();
+    showQuestion();;
   } else {
     showScore();
   }

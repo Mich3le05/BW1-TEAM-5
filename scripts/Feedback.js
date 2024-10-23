@@ -8,7 +8,7 @@ document.querySelectorAll('.star').forEach((star, index, starsArray) => {
     star.addEventListener('click', () => {
       // Cambia il colore delle stelle a partire da quella cliccata fino alla fine
       for (let i = index; i < starsArray.length; i++) {
-        starsArray[i].querySelector('path').setAttribute('fill', '#000000'); // Cambia il colore a oro (gold)
+        starsArray[i].querySelector('path').setAttribute('fill', '#000000'); // Cambia il colore
       }
     });
   });
@@ -28,8 +28,6 @@ stars.forEach((star, index) => {
 });
 
 /*FINE STELLINE*/
-
-
 
 
 /*PARTE BOTTONE*/
