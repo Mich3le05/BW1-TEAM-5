@@ -14,7 +14,7 @@ Le pagine create sono:
 -Feedback page
 
 Progetto sviluppato da:
-- Giulio Fardelle
+- Giulio Fardella
 - Michele Mandanici
 - Serena Ferraro
 - Matteo Di Lorenzo
