@@ -79,10 +79,25 @@ form {
   min-height: 20px;
 }
 
+/* Cambia lo stile quando la checkbox è selezionata */
 #checkbox:checked {
-  background-color: rgba(255, 255, 255, 0.5);
-  border: solid #c2128d 2px;
+  background-color: white; /* Cambia lo sfondo a bianco */
+  border: solid #c2128d 2px; /* Mantieni il bordo colorato */
 }
+
+/* Aggiungi la spunta verde e centrala */
+#checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: -4px; /* Regola per centrare verticalmente */
+  left: 5px; /* Regola per centrare orizzontalmente */
+  width: 8px;
+  height: 16px;
+  border: solid green;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+
 
 label {
   display: inline-block;
@@ -99,4 +114,5 @@ button {
   box-shadow: 3px 3px 25px #00ffff;
   display: inline-block;
   margin-left: 40vh;
+  cursor: pointer;
 }
