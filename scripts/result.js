@@ -75,8 +75,7 @@ const calcolapercentuale = function(array){
 
     positives = (positives * 100)/array.length;
     negatives = (negatives * 100)/array.length;
-    console.log(positives)
-    console.log(negatives)
+
 
     mostrarisultatiinhtml(positives, negatives)
 }
@@ -85,7 +84,6 @@ const calcolapercentuale = function(array){
 // recuperatesto()
 document.addEventListener('DOMContentLoaded', function () {
   const retrievedData = JSON.parse(localStorage.getItem('quizResults'))
-  console.log(retrievedData)
   calcolapercentuale(retrievedData)
   // Aggiorna il grafico con i dati recuperati
   myDonutChart.data.datasets[0].data = [
