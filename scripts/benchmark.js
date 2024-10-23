@@ -131,7 +131,8 @@ const questions = [
               } else if (results[currentQuestionIndex] === 0) {
                   button.classList.add('red'); // Risposta sbagliata
               }
-              button.disabled = true; // Disabilitare il bottone se la domanda è già stata risposta
+             
+             button.disabled = true; // Disabilitare il bottone se la domanda è già stata risposta
           } else {
               button.onclick = () => selectAnswer(button, answers[index] === currentQuestion.correct_answer);
           }
