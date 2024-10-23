@@ -99,80 +99,92 @@ const questions = [
   ];
   
   let currentQuestionIndex = 0;
-  let score=0;
-  let results = []
-  let percentage = 0 
-  window.onload=showQuestion
+  let score = 0;
+  let results = [];
+  let percentage = 0;
+  window.onload = showQuestion;
   
-
   /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE 
-  function showQuestion(){
-    /// contatore 
-      const counter = document.getElementById('span1')
-      counter.textContent=currentQuestionIndex+1 /// contatore 
-    
-    const questionElement = document.querySelector('#question')
-    const buttons = document.querySelectorAll('#buttons button')
-    const currentQuestion = questions[currentQuestionIndex]
-    questionElement.textContent=currentQuestion.question 
-
-
-    /// Mescolare le risposte 
-    const answers = [currentQuestion.correct_answer,...currentQuestion.incorrect_answers]
-    answers.sort(()=> Math.random() - 0.5)
-
-    /// testi dei bottoni 
-    buttons.forEach((button,index)=>{
-        button.textContent = answers[index]
-        button.disabled=false
-        button.classList.remove('selected')
-        button.onclick = () => selectAnswer(button,answers[index]===currentQuestion.correct_answer)
-    })
-    /// reset del pulsante Next 
-    document.getElementById('nextButton').disabled= true 
-}
-
-
-
-/// f. per scegliere la risposta
-function selectAnswer(button ,Correct){
-  const buttons =document.querySelectorAll('#buttons button')
-  /// disabilitare i bottoni
-  buttons.forEach(btn=> btn.disabled=true)
-  /// aggiungere la classe selected alla risposta scelta 
-  button.classList.add('selected')
-    if(Correct){
-      button.classList.add('green')
-        score++
-        results.push(1)
-       } else{
-         button.classList.add('red');
-        results.push(0) } // bottoni colorati 
-        document.getElementById('nextButton').disabled=false /// abilitazione del tasto Next 
-}
-
-
-/// f. per passare alla domanda successiva 
-function nextQuestion(){
-    currentQuestionIndex++;
-    if(currentQuestionIndex<questions.length){
-        showQuestion()
-    }
-    else{showScore()
-
-    }
-}
- /// pulsante NEXT 
- document.getElementById('nextButton').addEventListener('click', nextQuestion)
-
- /// mostrare il punteggio finale 
- function showScore() {
-    percentage = (score/questions.length)*100
-    const mainE = document.querySelector('main')
-    mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>
-    <p>Percenuale risposte corrette: ${percentage.toFixed(2)}%</p>`
- }
-    
+  function showQuestion() {
+      /// contatore 
+      const counter = document.getElementById('span1');
+      counter.textContent = currentQuestionIndex + 1; /// contatore 
+      
+      const questionElement = document.querySelector('#question');
+      const buttons = document.querySelectorAll('#buttons button');
+      const currentQuestion = questions[currentQuestionIndex];
+      questionElement.textContent = currentQuestion.question;
+  
+      /// Mescolare le risposte 
+      const answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
+      answers.sort(() => Math.random() - 0.5);
+  
+      buttons.forEach((button, index) => {
+          button.textContent = answers[index];
+          button.disabled = false; // Riabilitare il bottone per la nuova domanda e rimuovere i colori
+          button.classList.remove('selected', 'green', 'red');
+  
+          // Controllare se l'utente ha già risposto alla domanda 
+          if (results.length > currentQuestionIndex) {
+              if (results[currentQuestionIndex] === 1) {
+                  button.classList.add('green'); // Risposta corretta
+              } else if (results[currentQuestionIndex] === 0) {
+                  button.classList.add('red'); // Risposta sbagliata
+              }
+              button.disabled = true; // Disabilitare il bottone se la domanda è già stata risposta
+          } else {
+              button.onclick = () => selectAnswer(button, answers[index] === currentQuestion.correct_answer);
+          }
+      });
+  
+      /// reset del pulsante Next 
+      document.getElementById('nextButton').disabled = true; 
+  }
+  
+  /// f. per scegliere la risposta
+  function selectAnswer(button, Correct) {
+      const buttons = document.querySelectorAll('#buttons button');
+      
+      // Disabilitare tutti i bottoni
+      buttons.forEach(btn => btn.disabled = true);
+  
+      // Aggiungere la classe selected alla risposta scelta 
+      button.classList.add('selected');
+  
+      if (Correct) {
+          button.classList.add('green'); // Risposta corretta
+          score++;
+          results.push(1); // Aggiorna il punteggio
+      } else {
+          button.classList.add('red'); // Risposta sbagliata
+          results.push(0); // Aggiorna il punteggio
+      }
+  
+      // Abilita il pulsante Next 
+      document.getElementById('nextButton').disabled = false; 
+  }
+  
+  /// f. per passare alla domanda successiva 
+  function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+          showQuestion();
+      } else {
+          showScore();
+      }
+  }
+  
+  /// pulsante NEXT 
+  document.getElementById('nextButton').addEventListener('click', nextQuestion);
+  
+  /// mostrare il punteggio finale 
+  function showScore() {
+      percentage = (score / questions.length) * 100;
+      const mainE = document.querySelector('main');
+      mainE.innerHTML = `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>
+      <p>Percenuale risposte corrette: ${percentage.toFixed(2)}%</p>`;
+  }
+  
 
 
 //importiamo gli elementi da html
