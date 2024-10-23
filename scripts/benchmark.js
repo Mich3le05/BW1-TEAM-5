@@ -180,17 +180,15 @@ const questions = [
   /// mostrare il punteggio finale 
   function showScore() {
       percentage = (score / questions.length) * 100;
-      const mainE = document.querySelector('main');
-      mainE.innerHTML = `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>
-      <p>Percenuale risposte corrette: ${percentage.toFixed(2)}%</p>`;
+    
+      // LOCAL STORAGE
+      localStorage.setItem('quizResults', JSON.stringify(results))
+      window.location.href = 'result.html'
   }
   
 
-  // LOCAL STORAGE
 
-  localStorage.setItem('quizResults', JSON.stringify(results))
-  window.location.href = 'result.html'
-}
+
 
 //importiamo gli elementi da html
 const timerDisplay = document.getElementById('timer')
@@ -213,8 +211,8 @@ const countDown = () => {
   const currentTime = Date.now()
   const remainingTime = futureTime - currentTime
   const angle = (remainingTime / totalTime) * 360
-
   const secondsRemaining = Math.floor(remainingTime / 1000)
+
 
   //animazione
 
