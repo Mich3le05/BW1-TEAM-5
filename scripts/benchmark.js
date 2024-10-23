@@ -144,6 +144,10 @@ const countDown = () => {
   // Ferma il timer quando arriva a 0
   if (secondsRemaining <= 0) {
     clearInterval(timerLoop);
+    /// se l'utente non risponde in tempo il results finale avrà un "sbagliato" cioè 0 
+    if(!results[currentQuestionIndex]){
+      results.push(0)
+    }
     timerDisplay.innerHTML = `<p>Time's up</p>`;
     semicircles.forEach((s) => (s.style.transform = "rotate(180deg)"));
     nextQuestion();
