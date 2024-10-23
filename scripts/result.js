@@ -18,11 +18,6 @@ const myDonutChart = new Chart(ctx, {
             borderWidth: 1
         }]
     },
-<<<<<<< Updated upstream
-    }
-});
-
-=======
     options: {
         responsive: true,
         cutout: '90%',
@@ -35,21 +30,14 @@ const myDonutChart = new Chart(ctx, {
 });
 
 
->>>>>>> Stashed changes
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("DivChangeText").innerHTML = "ciao";
 });
 
 
-<<<<<<< Updated upstream
-
-import { arrayDiDati } from "./../benchmark.js";
-console.log(arrayDiDati);
-=======
 const recuperatesto = function(){
   let retrievedArray = JSON.parse(localStorage.getItem('sharedArray'));
   console.log(retrievedArray);
 }
 
 recuperatesto()
->>>>>>> Stashed changes
