@@ -28,58 +28,50 @@ const myDonutChart = new Chart(ctx, {
 
 // FINE GRAFICO
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   document.getElementById('DivChangeText').innerHTML = 'ciao'
-// })
+const mostrarisultatiinhtml = function (positivi, negativi) {
+  const risultatipositivihtml =
+    document.getElementsByClassName('correctPercentage')
+  if (risultatipositivihtml.length > 0) {
+    risultatipositivihtml[0].innerText = `${positivi} %`
+  }
 
-// const recuperatesto = function () {
-//   let retrievedArray = JSON.parse(localStorage.getItem('sharedArray'))
-//   console.log(retrievedArray)
-// }
+  const risultatinegativihtml =
+    document.getElementsByClassName('wrongPercentage')
+  if (risultatinegativihtml.length > 0) {
+    risultatinegativihtml[0].innerText = `${negativi} %`
+  }
 
+  const numeripositivisutotaleinhtml =
+    document.getElementsByClassName('correctNumber')
+  if (numeripositivisutotaleinhtml.length > 0) {
+    numeripositivisutotaleinhtml[0].innerText =
+      positivi / 10 + ' /' + (positivi + negativi) / 10 + ' questions'
+  }
 
-
-const mostrarisultatiinhtml = function(positivi, negativi){
-    const risultatipositivihtml = document.getElementsByClassName("correctPercentage");
-    if (risultatipositivihtml.length > 0) {
-        risultatipositivihtml[0].innerText = `${positivi} %`;
-    }
-
-    const risultatinegativihtml = document.getElementsByClassName("wrongPercentage");
-    if (risultatinegativihtml.length > 0) {
-        risultatinegativihtml[0].innerText = `${negativi} %`;
-    }
-
-    const numeripositivisutotaleinhtml = document.getElementsByClassName("correctNumber")
-    if(numeripositivisutotaleinhtml.length >0){
-        numeripositivisutotaleinhtml[0].innerText = positivi/10 + " /" + (positivi+negativi)/10;
-    }
-
-    const numerinegativisutotaleinhtml = document.getElementsByClassName("wrongNumber")
-    if(numerinegativisutotaleinhtml.length >0){
-        numerinegativisutotaleinhtml[0].innerText = negativi/10 + " /" + (positivi+negativi)/10;
-    }
-
+  const numerinegativisutotaleinhtml =
+    document.getElementsByClassName('wrongNumber')
+  if (numerinegativisutotaleinhtml.length > 0) {
+    numerinegativisutotaleinhtml[0].innerText =
+      negativi / 10 + ' /' + (positivi + negativi) / 10 + ' questions'
+  }
 }
 
-const calcolapercentuale = function(array){
-    let positives = 0;
-    let negatives = 0;
-    for(let i = 0; i< array.length; i++){
-        if(array[i] == "1") {
-            positives = positives + 1;
-        } else{
-            negatives = negatives + 1;
-        }
+const calcolapercentuale = function (array) {
+  let positives = 0
+  let negatives = 0
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] == '1') {
+      positives = positives + 1
+    } else {
+      negatives = negatives + 1
     }
+  }
 
-    positives = (positives * 100)/array.length;
-    negatives = (negatives * 100)/array.length;
+  positives = (positives * 100) / array.length
+  negatives = (negatives * 100) / array.length
 
-
-    mostrarisultatiinhtml(positives, negatives)
+  mostrarisultatiinhtml(positives, negatives)
 }
-
 
 // recuperatesto()
 document.addEventListener('DOMContentLoaded', function () {
@@ -101,14 +93,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let message
   if (percentageCorrect >= 60) {
-    message = `Congratulations! You passed the exam. You have answered ${percentageCorrect}% of the questions correctly!`
+    message = `Congratulations! You passed the exam`
   } else {
-    message = `Oops! You failed the exam. You only answered ${percentageCorrect}% of the questions correctly!`
+    message = `Oops! You failed the exam`
   }
 
   chartTextElement.textContent = message
   chartTextElement.classList.add(percentageCorrect >= 60 ? 'success' : 'fail')
 })
-
-
-
