@@ -100,7 +100,8 @@ const questions = [
   
   let currentQuestionIndex = 0;
   let score=0;
-  export let results = []
+  let results = []
+  let percentage = 0 
   window.onload=showQuestion
   
 
@@ -159,8 +160,73 @@ function nextQuestion(){
 
  /// mostrare il punteggio finale 
  function showScore() {
+    percentage = (score/questions.length)*100
     const mainE = document.querySelector('main')
     mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>` 
  }
     
 
+
+//importiamo gli elementi da html
+const timerDisplay = document.getElementById("timer");
+const semicircles = document.querySelectorAll(".semicircle");
+
+//impostiamo il tempo
+let hr = 0;
+let min = 1;
+let sec = 0;
+//convertiamo il tempo in millisecond poichè js usa i millisecondi
+const hoursInMs = hr * 3600000;
+const minutesInMs = min * 60000;
+const secondsInMs = sec * 1000;
+
+const totalTime = hoursInMs + minutesInMs + secondsInMs;
+const startTime = Date.now();
+const futureTime = startTime + totalTime;
+
+
+const countDown = () => {
+  const currentTime = Date.now();
+  const remainingTime = futureTime - currentTime;
+  const angle = (remainingTime / totalTime) * 360;
+
+  const secondsRemaining = Math.floor(remainingTime / 1000);
+
+
+  //animazione
+
+  //rotazione 
+  //il 2 è l'azzurro
+  if (angle >180) {
+    semicircles[2].style.display = "none";
+    semicircles[0].style.transform = "rotate(180deg)";
+    semicircles[1].style.transform = `rotate(${angle}deg)`;
+  } else {
+    semicircles[1].style.display = "none";
+    semicircles[2].style.display = "block";
+    // semicircles[2].style.display = 'block';
+    semicircles[0].style.transform = `rotate(${angle}deg)`;
+    // semicircles[2].style.transform = `rotate(${angle}deg)`;
+  }
+
+
+
+    // Ferma il timer quando arriva a 0
+    if (secondsRemaining <= 0) {
+      clearInterval(timerLoop);
+      timerDisplay.innerHTML = `<p>Time's up</p>`;
+      semicircles.forEach((s) => (s.style.transform = "rotate(180deg)"));
+    
+      return;
+    }
+
+
+  // testo
+  timerDisplay.innerHTML = `<p>SECONDS</p><h1>${
+    secondsRemaining % 60 < 10 ? "0" : ""
+  }${secondsRemaining % 60}</h1><p>REMAINING</p>`;
+};
+
+
+countDown();
+const timerLoop = setInterval(countDown, 1000);
