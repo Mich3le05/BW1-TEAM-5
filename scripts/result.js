@@ -29,12 +29,11 @@ const myDonutChart = new Chart(ctx, {
     }
 });
 
-const calcolatesto = function {
-
-  if(){}
-  else{}
-}
-
 document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("DivChangeText").innerHTML = calcolatesto();
+  document.getElementById("DivChangeText").innerHTML = "ciao";
 });
+
+
+
+import { arrayDiDati } from "./../benchmark.js";
+console.log(arrayDiDati);
