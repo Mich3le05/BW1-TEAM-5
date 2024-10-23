@@ -119,11 +119,21 @@ const initializeTimer = () => {
   totalTime = hoursInMs + minutesInMs + secondsInMs;
   startTime = Date.now();
   futureTime = startTime + totalTime;
+
+  // Start the animation
+  startAnimation();
 };
 
 // importiamo gli elementi da html
 const timerDisplay = document.getElementById("timer");
 const semicircles = document.querySelectorAll(".semicircle");
+
+const startAnimation = () => {
+  semicircles.forEach(s => {
+    s.style.transform = "rotate(0deg)";
+    s.style.display = "block"; // Reset display for animation
+  });
+};
 
 const countDown = () => {
   const currentTime = Date.now();
@@ -142,8 +152,14 @@ const countDown = () => {
 
   // animazione
   const angle = (remainingTime / totalTime) * 360;
+  updateSemicircles(angle);
+  
+  // testo
+  timerDisplay.innerHTML = 
+`<p>SECONDS</p><h1>${secondsRemaining < 10 ? "0" : ""}${secondsRemaining}</h1><p>REMAINING</p>`;
+};
 
-  // rotazione
+const updateSemicircles = (angle) => {
   if (angle > 180) {
     semicircles[2].style.display = "none";
     semicircles[0].style.transform = "rotate(180deg)";
@@ -153,10 +169,6 @@ const countDown = () => {
     semicircles[2].style.display = "block";
     semicircles[0].style.transform = `rotate(${angle}deg)`;
   }
-
-  // testo
-  timerDisplay.innerHTML = 
-`<p>SECONDS</p><h1>${secondsRemaining < 10 ? "0" : ""}${secondsRemaining}</h1><p>REMAINING</p>`;
 };
 
 /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE
@@ -251,6 +263,7 @@ function showScore() {
   localStorage.setItem("quizResults", JSON.stringify(results));
   window.location.href = "result.html";
 }
- //facciamo partire il timer e il conto alla rovescia
+
+//facciamo partire il timer e il conto alla rovescia
 initializeTimer();
 countDown();
