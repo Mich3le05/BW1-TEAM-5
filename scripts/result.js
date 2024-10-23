@@ -22,5 +22,26 @@ const myDonutChart = new Chart(ctx, {
         display: false,
       },
     },
-  },
-})
+    options: {
+        responsive: true,
+        cutout: '90%',
+        plugins: {
+            legend: {
+                display: false 
+            }
+        }
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("DivChangeText").innerHTML = "ciao";
+});
+
+
+const recuperatesto = function(){
+  let retrievedArray = JSON.parse(localStorage.getItem('sharedArray'));
+  console.log(retrievedArray);
+}
+
+recuperatesto()

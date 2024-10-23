@@ -14,10 +14,10 @@ Le pagine create sono:
 -Feedback page
 
 Progetto sviluppato da:
--
--
--
--Matteo Di Lorenzo
+- Giulio Fardella
+- Michele Mandanici
+- Serena Ferraro
+- Matteo Di Lorenzo
 -
 
 
