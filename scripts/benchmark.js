@@ -163,6 +163,8 @@ function nextQuestion(){
     percentage = (score/questions.length)*100
     const mainE = document.querySelector('main')
     mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>` 
+    //andiamo a salvare l'array di risultati in un file locale, cosi da poterlo passare alla prossima pagina
+    localStorage.setItem('sharedArray', JSON.stringify(results));
  }
     
 
