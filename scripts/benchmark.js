@@ -186,67 +186,66 @@ const questions = [
   }
   
 
+  // LOCAL STORAGE
+
+  localStorage.setItem('quizResults', JSON.stringify(results))
+  window.location.href = 'result.html'
+}
 
 //importiamo gli elementi da html
-const timerDisplay = document.getElementById("timer");
-const semicircles = document.querySelectorAll(".semicircle");
+const timerDisplay = document.getElementById('timer')
+const semicircles = document.querySelectorAll('.semicircle')
 
 //impostiamo il tempo
-let hr = 0;
-let min = 1;
-let sec = 0;
+let hr = 0
+let min = 1
+let sec = 0
 //convertiamo il tempo in millisecond poichè js usa i millisecondi
-const hoursInMs = hr * 3600000;
-const minutesInMs = min * 60000;
-const secondsInMs = sec * 1000;
+const hoursInMs = hr * 3600000
+const minutesInMs = min * 60000
+const secondsInMs = sec * 1000
 
-const totalTime = hoursInMs + minutesInMs + secondsInMs;
-const startTime = Date.now();
-const futureTime = startTime + totalTime;
-
+const totalTime = hoursInMs + minutesInMs + secondsInMs
+const startTime = Date.now()
+const futureTime = startTime + totalTime
 
 const countDown = () => {
-  const currentTime = Date.now();
-  const remainingTime = futureTime - currentTime;
-  const angle = (remainingTime / totalTime) * 360;
+  const currentTime = Date.now()
+  const remainingTime = futureTime - currentTime
+  const angle = (remainingTime / totalTime) * 360
 
-  const secondsRemaining = Math.floor(remainingTime / 1000);
-
+  const secondsRemaining = Math.floor(remainingTime / 1000)
 
   //animazione
 
-  //rotazione 
+  //rotazione
   //il 2 è l'azzurro
-  if (angle >180) {
-    semicircles[2].style.display = "none";
-    semicircles[0].style.transform = "rotate(180deg)";
-    semicircles[1].style.transform = `rotate(${angle}deg)`;
+  if (angle > 180) {
+    semicircles[2].style.display = 'none'
+    semicircles[0].style.transform = 'rotate(180deg)'
+    semicircles[1].style.transform = `rotate(${angle}deg)`
   } else {
-    semicircles[1].style.display = "none";
-    semicircles[2].style.display = "block";
+    semicircles[1].style.display = 'none'
+    semicircles[2].style.display = 'block'
     // semicircles[2].style.display = 'block';
-    semicircles[0].style.transform = `rotate(${angle}deg)`;
+    semicircles[0].style.transform = `rotate(${angle}deg)`
     // semicircles[2].style.transform = `rotate(${angle}deg)`;
   }
 
+  // Ferma il timer quando arriva a 0
+  if (secondsRemaining <= 0) {
+    clearInterval(timerLoop)
+    timerDisplay.innerHTML = `<p>Time's up</p>`
+    semicircles.forEach((s) => (s.style.transform = 'rotate(180deg)'))
 
-
-    // Ferma il timer quando arriva a 0
-    if (secondsRemaining <= 0) {
-      clearInterval(timerLoop);
-      timerDisplay.innerHTML = `<p>Time's up</p>`;
-      semicircles.forEach((s) => (s.style.transform = "rotate(180deg)"));
-    
-      return;
-    }
-
+    return
+  }
 
   // testo
   timerDisplay.innerHTML = `<p>SECONDS</p><h1>${
-    secondsRemaining % 60 < 10 ? "0" : ""
-  }${secondsRemaining % 60}</h1><p>REMAINING</p>`;
-};
+    secondsRemaining % 60 < 10 ? '0' : ''
+  }${secondsRemaining % 60}</h1><p>REMAINING</p>`
+}
 
-
-countDown();
-const timerLoop = setInterval(countDown, 1000);
+countDown()
+const timerLoop = setInterval(countDown, 1000)
