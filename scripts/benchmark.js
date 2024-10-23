@@ -103,6 +103,7 @@ const questions = [
   let results = []
   let percentage = 0 
   window.onload=showQuestion
+  
 
   /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE 
   function showQuestion(){
@@ -135,9 +136,10 @@ const questions = [
 function selectAnswer(Correct){
     if(Correct){
         score++
-        results.push(1)("Giusto!")
+        results.push("1")
         alert("Giusto!")
-       } else{ results.push(0)("Sbagliato!") 
+       } else{ 
+        results.push("0") 
         alert("Sbagliato!")}  /// abilitazione del tasto Next 
         document.getElementById('nextButton').disabled=false
 }
@@ -161,6 +163,8 @@ function nextQuestion(){
     percentage = (score/questions.length)*100
     const mainE = document.querySelector('main')
     mainE.innerHTML= `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>` 
+    //andiamo a salvare l'array di risultati in un file locale, cosi da poterlo passare alla prossima pagina
+    localStorage.setItem('sharedArray', JSON.stringify(results));
  }
     
 
