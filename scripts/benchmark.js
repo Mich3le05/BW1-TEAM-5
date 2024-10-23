@@ -101,14 +101,17 @@ let percentage = 0;
 let totalTime;
 let futureTime;
 let startTime;
+let timerLoop;
+
 window.onload = showQuestion;
 
 const initializeTimer = () => {
-  //impostiamo il tempo
+  // impostiamo il tempo
   let hr = 0;
-  let min = 1;
+  let min = 1; // Set the timer to 1 minute
   let sec = 0;
-  //convertiamo il tempo in millisecond poichè js usa i millisecondi
+
+  // convertiamo il tempo in millisecond poichè js usa i millisecondi
   const hoursInMs = hr * 3600000;
   const minutesInMs = min * 60000;
   const secondsInMs = sec * 1000;
@@ -118,7 +121,7 @@ const initializeTimer = () => {
   futureTime = startTime + totalTime;
 };
 
-//importiamo gli elementi da html
+// importiamo gli elementi da html
 const timerDisplay = document.getElementById("timer");
 const semicircles = document.querySelectorAll(".semicircle");
 
@@ -137,11 +140,10 @@ const countDown = () => {
     return;
   }
 
-  //animazione
+  // animazione
   const angle = (remainingTime / totalTime) * 360;
-  
-  //rotazione
-  //il 2 è l'azzurro
+
+  // rotazione
   if (angle > 180) {
     semicircles[2].style.display = "none";
     semicircles[0].style.transform = "rotate(180deg)";
@@ -149,28 +151,25 @@ const countDown = () => {
   } else {
     semicircles[1].style.display = "none";
     semicircles[2].style.display = "block";
-
     semicircles[0].style.transform = `rotate(${angle}deg)`;
   }
 
   // testo
-timerDisplay.innerHTML = 
-`<p>SECONDS</p><h1>${secondsRemaining < 10 ? "0" : ""}
-${secondsRemaining}</h1><p>REMAINING</p>`
+  timerDisplay.innerHTML = 
+`<p>SECONDS</p><h1>${secondsRemaining < 10 ? "0" : ""}${secondsRemaining}</h1><p>REMAINING</p>`;
 };
 
 /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE
 function showQuestion() {
-  /// contatore
   const counter = document.getElementById("span1");
-  counter.textContent = currentQuestionIndex + 1; /// contatore
+  counter.textContent = currentQuestionIndex + 1; // contatore
 
   const questionElement = document.querySelector("#question");
   const buttons = document.querySelectorAll("#buttons button");
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
 
-  /// Mescolare le risposte
+  // Mescolare le risposte
   const answers = [
     currentQuestion.correct_answer,
     ...currentQuestion.incorrect_answers,
@@ -196,8 +195,12 @@ function showQuestion() {
     }
   });
 
-  /// reset del pulsante Next
+  // reset del pulsante Next
   document.getElementById("nextButton").disabled = true;
+
+  initializeTimer();
+  countDown();
+  timerLoop = setInterval(countDown, 1000);
 }
 
 /// f. per scegliere la risposta
@@ -226,9 +229,7 @@ function selectAnswer(button, Correct) {
 /// f. per passare alla domanda successiva
 function nextQuestion() {
   currentQuestionIndex++;
-  initializeTimer();
-  countDown();
-  showQuestion();
+  clearInterval(timerLoop); // Clear the timer when moving to the next question
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
@@ -243,16 +244,13 @@ document.getElementById("nextButton").addEventListener("click", nextQuestion);
 function showScore() {
   percentage = (score / questions.length) * 100;
   const mainE = document.querySelector("main");
-  mainE.innerHTML = `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${
-    questions.length
-  }.</p>
+  mainE.innerHTML = `<h1>Quiz completato!</h1><p> Il tuo punteggio è ${score} su ${questions.length}.</p>
       <p>Percenuale risposte corrette: ${percentage.toFixed(2)}%</p>`;
 
   // LOCAL STORAGE
-
   localStorage.setItem("quizResults", JSON.stringify(results));
   window.location.href = "result.html";
 }
-initializeTimer()
+ //facciamo partire il timer e il conto alla rovescia
+initializeTimer();
 countDown();
-const timerLoop = setInterval(countDown, 1000);
