@@ -179,6 +179,7 @@ const updateSemicircles = (angle) => {
 
 /// FUNZIONE PER MOSTRARE LA DOMANDA CORRENTE E LE RISPOSTE
 function showQuestion() {
+  
   const counter = document.getElementById("span1");
   counter.textContent = currentQuestionIndex + 1; // contatore
 
@@ -196,6 +197,7 @@ function showQuestion() {
 
   buttons.forEach((button, index) => {
     button.textContent = answers[index];
+    button.style.display = "block";
     if (button.textContent === ""){
       console.log("ciao")
       button.style.display = "none";
@@ -249,6 +251,7 @@ function selectAnswer(button, Correct) {
   //COSI CHE L'USER POSSA CAPIRLO
     document.getElementById("nextButton").disabled = false;
     if (document.getElementById("nextButton").disabled === false) {
+
       document.getElementById("nextButton").style.cursor = "pointer";
     }
 }
@@ -258,7 +261,7 @@ function nextQuestion() {
   currentQuestionIndex++;
   clearInterval(timerLoop); // Clear the timer when moving to the next question
   if (currentQuestionIndex < questions.length) {
-    showQuestion();
+    showQuestion();;
   } else {
     showScore();
   }
