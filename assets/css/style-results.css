@@ -114,3 +114,14 @@ main {
   width: 100%;
   height: auto;
 }
+
+/* SCRITTA DENTRO AL GRAFICO  */
+#DivChangeText.success {
+  color: #00ffff;
+  font-weight: bold;
+}
+
+#DivChangeText.fail {
+  color: #d20094;
+  font-weight: bold;
+}
