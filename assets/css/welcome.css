@@ -86,17 +86,6 @@ form {
 }
 
 /* Aggiungi la spunta verde e centrala */
-#checkbox:checked::after {
-  content: '';
-  position: absolute;
-  top: -4px; /* Regola per centrare verticalmente */
-  left: 5px; /* Regola per centrare orizzontalmente */
-  width: 8px;
-  height: 16px;
-  border: solid green;
-  border-width: 0 4px 4px 0;
-  transform: rotate(45deg);
-}
 
 
 label {
