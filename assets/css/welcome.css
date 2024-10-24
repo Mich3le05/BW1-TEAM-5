@@ -85,7 +85,18 @@ form {
   border: solid #c2128d 2px; /* Mantieni il bordo colorato */
 }
 
-/* Aggiungi la spunta verde e centrala */
+/* Aggiungi la spunta rosa e centrala */
+#checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: -4px; /* Regola per centrare verticalmente */
+  left: 5px; /* Regola per centrare orizzontalmente */
+  width: 6px;
+  height: 14px;
+  border: solid #c2128d;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
 
 
 label {
