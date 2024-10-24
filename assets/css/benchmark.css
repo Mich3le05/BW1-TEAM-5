@@ -7,9 +7,11 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
-  margin-right: auto;
-  margin-left: auto;
+ margin:5em;
+ padding-bottom: 2em;
+justify-content: center;
   font-family: 'Inter';
+  box-sizing: content-box;
 }
 
 header {
@@ -19,11 +21,10 @@ header {
 }
 
 #logo {
-  width: 18vw;
-  max-width: 300px;
-  min-width: 100px;
-  padding-top: 3em;
-  padding-left: 10em;
+  width: 20vh;
+  margin-top: 2em;
+  /* padding-top: 3em;
+  padding-left: 10em; */
 }
 
 main {
@@ -76,7 +77,8 @@ button {
 }
 
 h1 {
-  font-size: 4.6em;
+  margin-top: 0;
+  font-size: 60px;
   margin-bottom: 1em;
   font-weight: 700;
 }
