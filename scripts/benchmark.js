@@ -94,6 +94,8 @@ const questions = [
   },
 ];
 
+const header = document.querySelector('header')
+
 let currentQuestionIndex = 0;
 let score = 0;
 let results = [];
@@ -282,6 +284,18 @@ function showScore() {
   window.location.href = "result.html";
 }
 
+
+const scroll = () => {
+  if (window.scrollY > 0) {
+      header.classList.add('blur');
+  } else {
+      header.classList.remove('blur');
+  }
+}; 
+
+
+
+window.addEventListener('scroll', scroll); 
 //facciamo partire il timer e il conto alla rovescia
 initializeTimer();
 countDown();
