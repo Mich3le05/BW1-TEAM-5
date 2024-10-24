@@ -1,50 +1,60 @@
+/*PARTE STELLINE*/
+let coloredStarsCount = 0; // Variabile per contare le stelle colorate di azzurro
 
-/*NON ho la piu pallida idea di come questa cosa funzioni. 
-ricerche varie tramite stackoverflow, da cui ho rubato codice, e altri siti, dove ho trovato il fill per gli oggetti svg
-*/
-
-/*PARTE STELLINE */
 document.querySelectorAll('.star').forEach((star, index, starsArray) => {
-    star.addEventListener('click', () => {
-      // Cambia il colore delle stelle a partire da quella cliccata fino alla fine
-      for (let i = index; i < starsArray.length; i++) {
-        starsArray[i].querySelector('path').setAttribute('fill', '#000000'); // Cambia il colore
-      }
-    });
+  star.addEventListener('click', () => {
+    // Colora le stelle a partire da quella cliccata fino alla fine (nera)
+    for (let i = index; i < starsArray.length; i++) {
+      starsArray[i].querySelector('path').setAttribute('fill', '#000000'); // Colore nero
+    }
   });
+});
 
-  // Seleziona tutte le stelle
 const stars = document.querySelectorAll('.star');
 
-// Aggiungi un event listener su ogni stella
+// Aggiungi un event listener su ogni stella per colorarla di azzurro e aggiornare il conteggio
 stars.forEach((star, index) => {
   star.addEventListener('click', () => {
-    // Colora tutte le stelle a sinistra della stella cliccata (inclusa la stella stessa) di azzurrino
+    coloredStarsCount = 0; // Reset conteggio
+
     for (let i = 0; i <= index; i++) {
       const path = stars[i].querySelector('path');
-      path.setAttribute('fill', '#00FFFF');  // Azzurrino
+      path.setAttribute('fill', '#00FFFF'); // Azzurrino
+
+      coloredStarsCount++; // Incrementa il conteggio delle stelle colorate
+    }
+
+    // Assicurati che le stelle dopo la cliccata siano nere
+    for (let i = index + 1; i < stars.length; i++) {
+      const path = stars[i].querySelector('path');
+      path.setAttribute('fill', '#000000'); // Nero
     }
   });
 });
 
 /*FINE STELLINE*/
 
-
 /*PARTE BOTTONE*/
 
 const bottonecliccato = function () {
-    if (inputFeedback.value.trim() !== "") {
-
-        window.location.href = "https://epicode.com/it/?utm_source=adwords&utm_campaign=Brand&utm_adgroup=brandphrase&utm_term=epicode&utm_medium=ppc&hsa_acc=1246633295&hsa_cam=11897141170&hsa_grp=115607542316&hsa_ad=717726046297&hsa_src=g&hsa_tgt=kwd-1083842420863&hsa_kw=epicode&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=Cj0KCQjw99e4BhDiARIsAISE7P_R9G0ZaFxvBKzPKXXel4Glv0aSdu6XkyGUV2d-DoCoFWVxWgeKX1QaAoCZEALw_wcB";
+  if (inputFeedback.value.trim() !== "") {
+    // Aggiungi controllo sul numero di stelle colorate
+    if (coloredStarsCount >= 6) {
+      // Se l'utente ha 6 o più stelle colorate, reindirizza alla gif del gattino che balla
+      window.location.href = "https://giphy.com/gifs/happy-birthday-1DTBGm5Rfgymk";
     } else {
-        // Aggiungi la classe "shake" all'input
-        inputFeedback.classList.add("shake");
-
-        // Rimuovi la classe dopo un po' di tempo per ripristinare l'input
-        setTimeout(() => {
-            inputFeedback.classList.remove("shake");
-        }, 500);
+      // Altrimenti reindirizza a un gattino triste
+      window.location.href = "https://giphy.com/gifs/sad-kitten-CM1rHbKDMH2BW";
     }
+  } else {
+    // Aggiungi la classe "shake" all'input
+    inputFeedback.classList.add("shake");
+
+    // Rimuovi la classe dopo un po' di tempo per ripristinare l'input
+    setTimeout(() => {
+      inputFeedback.classList.remove("shake");
+    }, 500);
+  }
 };
 
 const inputFeedback = document.getElementById("InputFeedback");
@@ -52,12 +62,12 @@ const buttonForm = document.getElementById("buttonForm");
 
 // Funzione per abilitare/disabilitare il pulsante
 const checkInput = function () {
-    // Controlla se l'input non è vuoto
-    if (inputFeedback.value.trim() !== "") {
-        buttonForm.disabled = false; // Abilita il pulsante
-    } else {
-        buttonForm.disabled = true; // Disabilita il pulsante
-    }
+  // Controlla se l'input non è vuoto
+  if (inputFeedback.value.trim() !== "") {
+    buttonForm.disabled = false; // Abilita il pulsante
+  } else {
+    buttonForm.disabled = true; // Disabilita il pulsante
+  }
 };
 
 // Aggiungi un event listener all'input per il cambiamento del valore
